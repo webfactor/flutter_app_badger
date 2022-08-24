@@ -55,8 +55,8 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         Notification notification = new NotificationCompat.Builder(applicationContext,
             CHANNEL_ID)
-            .setContentTitle("badge title (not visible)")
-            .setContentText("badge text (not visible)")
+            .setContentTitle(" ")
+            .setContentText(" ")
             .setSmallIcon(getDrawableResourceId(applicationContext, "ic_launcher"))
             .setNumber(Integer.valueOf(call.argument("count").toString()))
             .build();
