@@ -35,8 +35,9 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
     applicationContext = flutterPluginBinding.getApplicationContext();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      int importance = NotificationManager.IMPORTANCE_MIN;
-      NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "badge_channel", importance);
+      int importance = NotificationManager.IMPORTANCE_NONE;
+      NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Ungelesen", importance);
+      channel.setShowBadge(true);
       NotificationManager notificationManager = (NotificationManager) applicationContext
           .getSystemService(Context.NOTIFICATION_SERVICE);
       notificationManager.createNotificationChannel(channel);
@@ -55,8 +56,8 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         Notification notification = new NotificationCompat.Builder(applicationContext,
             CHANNEL_ID)
-            .setContentTitle(" ")
-            .setContentText(" ")
+            .setContentTitle(String.valueOf(call.argument("title")))
+            .setContentText(String.valueOf(call.argument("body")))
             .setSmallIcon(getDrawableResourceId(applicationContext, "ic_launcher"))
             .setNumber(Integer.valueOf(call.argument("count").toString()))
             .build();

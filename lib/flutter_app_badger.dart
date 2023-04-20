@@ -10,6 +10,12 @@ class FlutterAppBadger {
     _channel.invokeMethod('updateBadgeCount', {"count": count});
   }
 
+
+  static Future<void> updateNotificationAndBadgeData(int count, String title, String body) {
+    return _channel.invokeMethod('updateBadgeCount', {"count": count, "title": title, "body": body});
+
+  }
+
   static void removeBadge() {
     _channel.invokeMethod('removeBadge');
   }
