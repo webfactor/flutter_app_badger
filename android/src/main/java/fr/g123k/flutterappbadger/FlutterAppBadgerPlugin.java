@@ -22,7 +22,7 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
   private Context applicationContext;
   private MethodChannel channel;
   private static final String CHANNEL_NAME = "g123k/flutter_app_badger";
-  private static final String CHANNEL_ID = 1001;
+  private static final String CHANNEL_ID = "1001";
 
   /**
    * Plugin registration.
