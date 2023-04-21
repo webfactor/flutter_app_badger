@@ -22,7 +22,7 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
   private Context applicationContext;
   private MethodChannel channel;
   private static final String CHANNEL_NAME = "g123k/flutter_app_badger";
-  private static final String CHANNEL_ID = "badge_channel_id";
+  private static final int CHANNEL_ID = 1001;
 
   /**
    * Plugin registration.
@@ -56,6 +56,7 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         Notification notification = new NotificationCompat.Builder(applicationContext,
             CHANNEL_ID)
+            .setPriority(NotificationCompat.PRIORITY_MIN)
             .setContentTitle(String.valueOf(call.argument("title")))
             .setContentText(String.valueOf(call.argument("body")))
             .setSmallIcon(getDrawableResourceId(applicationContext, "ic_launcher"))
@@ -65,7 +66,7 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
         NotificationManager notificationManager = (NotificationManager) applicationContext
             .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(1001, notification);
+        notificationManager.notify(CHANNEL_ID, notification);
       } else {
         ShortcutBadger.applyCount(applicationContext,
             Integer.valueOf(call.argument("count").toString()));
