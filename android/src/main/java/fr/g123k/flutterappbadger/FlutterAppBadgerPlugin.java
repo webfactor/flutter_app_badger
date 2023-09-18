@@ -57,8 +57,8 @@ public class FlutterAppBadgerPlugin implements MethodCallHandler, FlutterPlugin 
         Notification notification = new NotificationCompat.Builder(applicationContext,
             CHANNEL_ID)
             .setPriority(NotificationCompat.PRIORITY_MIN)
-            .setContentTitle(String.valueOf(call.argument("title")))
-            .setContentText(String.valueOf(call.argument("body")))
+            .setContentTitle(call.argument("title"))
+            .setContentText(call.argument("body"))
             .setSmallIcon(getDrawableResourceId(applicationContext, "ic_launcher"))
             .setNumber(Integer.valueOf(call.argument("count").toString()))
             .build();
